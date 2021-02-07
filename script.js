@@ -1,82 +1,63 @@
-
-
+// search button event handler
 function searchMeal() {
     const mealName = document.getElementById('inputMealName');
     fetch('https://www.themealdb.com/api/json/v1/1/search.php?f=' + mealName.value)
-    .then(res => res.json())
-    .then(data => foodItem(data.meals))
-    
+        .then(res => res.json())
+        .then(data => foodItem(data.meals))
+};
 
-}
-
+// showing search result function
 function foodItem(meals) {
     const mealContainer = document.getElementById('mealContainer');
-    if(mealContainer.innerHTML !== null){
+    if (mealContainer.innerHTML !== null) {
         mealContainer.innerHTML = '';
-        meals.forEach(meal => {        
-        
-            // const mealDiv = document.createElement('div');
-            // mealDiv.setAttribute('class', 'mealItem');
+        meals.forEach(meal => {
             mealContainer.innerHTML += `
                 <div onclick="mealInfo('${meal.strMeal}')" class="mealItem">
                     <img src='${meal.strMealThumb}'>
                     <h4>${meal.strMeal}</h4>
                 </div>
                 `
-            // mealContainer.appendChild(mealDiv);
         });
-    }
-    
+    };
 };
 
+
+// fetch single meal info with ingredients 
 function mealInfo(mealName) {
     fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=' + mealName)
-    .then(res => res.json())
-    .then(data => mealDetails(data.meals[0]))
+        .then(res => res.json())
+        .then(data => mealDetails(data.meals[0]))
 }
 
+
+// showing meal details function
 function mealDetails(meal) {
     const mealDetails = document.getElementById('mealDetails');
-    
-    // make an array with values from object
+    mealDetails.innerHTML = `
+    <button title="Close" id="close-btn" onclick="closeDetails()">✖</button>
+    <img src='${meal.strMealThumb}'>
+    <h1>${meal.strMeal}</h1>
+    <h3>Ingredients</h3>
+    <ul id="ingredientsContainer"></ul>
+    `
+    // make an array by values from object
     const propertyValues = Object.values(meal);
     // slice ingredient part from the array
     const ingredientsArray = propertyValues.slice(9, 29);
     // remove empty and null value from array
     const ingredients = ingredientsArray.filter(item => item);
-    mealDetails.innerHTML = `
-    <img src='${meal.strMealThumb}'>
-    <h2>${meal.strMeal}</h2>
-    <ul id="ingredientsContainer"></ul>
-    ` 
     const ingredientsContainer = document.getElementById('ingredientsContainer');
-        if(ingredientsContainer.innerHTML !== ''){
-            ingredientsContainer.innerHTML = '';
-        }
     ingredients.forEach(ingredient => {
-        
         ingredientsContainer.innerHTML += `
             <li>${ingredient}</li>
             `
-            
     });
-    //   console.log(ingredients);
-    
-    
-    
-    // mealDetails.appendChild(ingredientsContainer)
     mealDetails.style.display = 'block';
-    
-    
-    
-}
+};
 
-/*
-if(mealDetails.innerHTML !== null){
-        mealDetails.innerHTML = '';
-        mealDetails.innerHTML += `
-    <img src='${meal.strMealThumb}'>
-    <h2>${meal.strMeal}</h2>
-    ` 
-    }
-    */
+
+// close button event handler function
+function closeDetails(){
+    document.getElementById('mealDetails').style.display = 'none';
+};

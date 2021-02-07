@@ -64,5 +64,34 @@ body{
     display: none;
 }
 #mealDetails img{
-    width: 200px;
+    width: 100%;
+}
+#mealDetails{
+    padding: 1rem;
+    overflow-y: auto;
+}
+#ingredientsContainer li{
+    list-style: none;
+    margin-top: .5rem;
+}
+#ingredientsContainer li::before{
+    content: '✅';
+    margin-right: 1rem;
+}
+#close-btn{
+    /* position: absolute;
+    top: 0;
+    right: 0; */
+    
+    border: 0;
+    outline: 0;
+    font-size: 18px;
+    color: #ffffff;
+    background-color: #008891;
+    padding:4px 16px;
+    transition: .3s;
+    cursor: pointer;
+}
+#close-btn:hover{
+    background-color: #ff0000;
 }
