@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-color:#e5e5e5;
+    font-family: 'Poppins', sans-serif;
+}
+#inputSection{
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+#inputMealName, #searchBtn{
+    padding: 1rem 1.5rem;
+    border: 0;
+    outline: 0;
+}
+#inputMealName{
+    background-color: #dddddc;
+    border-radius: 5px 0 0 5px;
+    max-width: 15rem;
+}
+#searchBtn{
+    background-color: tomato;
+    border-radius: 0 5px 5px 0;
+    color: #ffffff;
+    cursor: pointer;
+}
+#mealContainer{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 2rem auto;
+}
+.mealItem{
+    background-color:#cccccc;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.mealItem img{
+    max-width: 100%;
+    border-radius: 10px 10px 0 0;
+}
+.mealItem h4{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    margin-bottom: .5rem;
+    color: #333333;
+}
+#mealDetails{
+    position: fixed;
+    top: 5%;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    max-width: 600px;
+    height: 80vh;
+    background-color: #ffffff;
+    display: none;
+}
+#mealDetails img{
+    width: 200px;
+}
