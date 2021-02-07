@@ -6,6 +6,7 @@ function searchMeal() {
         .then(data => foodItem(data.meals))
 };
 
+
 // showing search result function
 function foodItem(meals) {
     const mealContainer = document.getElementById('mealContainer');
